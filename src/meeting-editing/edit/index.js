@@ -1,26 +1,41 @@
-import React, { Fragment } from "react";
+import React, { Fragment, PureComponent } from "react";
 import { Header } from "../../components/header";
 import { InputForm } from "../components/input-form";
 import { Button } from "../components/button";
 import { Bottom } from "../components/bottom";
+import { ModalOnDelete } from "../../components/modal/on-delete";
 
-export const Edit = props => {
-  const onCancel = () => props.history.push("/");
-  const onSuccess = () =>
-    props.history.push({
-      pathname: `/`,
-      state: { modal: true }
-    });
+export class Edit extends PureComponent {
+  state = {
+    isModal: false
+  };
 
-  return (
-    <Fragment>
-      <Header />
-      <InputForm onCancel={onCancel} title={"Новая встреча"} />
+  onCancel = () => this.props.history.push("/");
+  showModal = () => this.setState({ isModal: true });
+  closeModal = () => this.setState({ isModal: false });
 
-      <Bottom>
-        <Button title="Отмена" onClick={onCancel} />
-        <Button title="Создать встречу" onClick={onSuccess} />
-      </Bottom>
-    </Fragment>
-  );
-};
+  render() {
+    const { onCancel, showModal, closeModal, state: { isModal } } = this;
+
+    const Modal = (
+      <ModalOnDelete>
+        <Button title="Отмена" onClick={closeModal} />
+        <Button title="Удалить" onClick={onCancel} />
+      </ModalOnDelete>
+    );
+
+    return (
+      <Fragment>
+        <Header />
+        <InputForm onCancel={onCancel} title={"Редактирование встречи"} />
+
+        <Bottom>
+          <Button title="Отмена" onClick={onCancel} />
+          <Button title="Удалить встречу" onClick={showModal} />
+          <Button title="Сохранить" onClick={onCancel} />
+        </Bottom>
+        {isModal ? Modal : null}
+      </Fragment>
+    );
+  }
+}
