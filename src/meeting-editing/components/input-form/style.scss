@@ -28,22 +28,6 @@ $footer-height-mobile: 81px;
     }
   }
 
-  &-bottom {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid #e9ecef;
-    background: #fff;
-    @media screen and (max-width: 640px) {
-      position: fixed;
-      bottom: 0px;
-      width: 100vw;
-      min-width: 320px;
-      padding-top: 16px;
-    }
-  }
-
   &-header-title {
     font-family: HelveticaNeue-Bold;
     font-size: 20px;
@@ -70,7 +54,7 @@ $footer-height-mobile: 81px;
       opacity: 0.43;
       background-repeat: no-repeat;
       background-position: center;
-      background-image: url("../../assets/close.svg");
+      background-image: url("../../../assets/close.svg");
     }
     &:hover {
       &:before {

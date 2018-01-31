@@ -1,15 +1,10 @@
 import React, { Fragment } from "react";
 import { Header } from "../components/header";
-import "./style/style.css";
-import "./style/input.css";
-import "./style/responsive.css";
-import { Timepicker } from "./components/timepicker";
-import { MembersSelect } from "./components/members-select";
-import { RoomSelect } from "./components/room-select";
-import { TitleInput } from "./components/title-input";
+import { InputForm } from "./components/input-form";
 import { Button } from "./components/button";
+import { Bottom } from "./components/bottom";
 
-export const Editing = props => {
+export const Edit = props => {
   const onCancel = () => props.history.push("/");
   const onSuccess = () =>
     props.history.push({
@@ -19,32 +14,30 @@ export const Editing = props => {
 
   return (
     <Fragment>
-      <Header key="Header" />
-      <div className="editing-main">
-        <div className="row">
-          <div className="editing-header-title"> Новая встреча </div>
-          <div
-            className="editing-exit-button hidden-mobile"
-            onClick={onCancel}
-          />
-        </div>
+      <Header />
+      <InputForm onCancel={onCancel} title={"Новая встреча"} />
 
-        <div className="row">
-          <TitleInput />
-          <Timepicker />
-        </div>
-
-        <div className="row">
-          <MembersSelect />
-          <div className="mobile-divider" />
-          <RoomSelect />
-        </div>
-      </div>
-
-      <div className="editing-bottom">
+      <Bottom>
         <Button title="Отмена" onClick={onCancel} />
         <Button title="Создать встречу" onClick={onSuccess} />
-      </div>
+      </Bottom>
+    </Fragment>
+  );
+};
+
+export const New = props => {
+  const onCancel = () => props.history.push("/");
+
+  return (
+    <Fragment>
+      <Header />
+      <InputForm onCancel={onCancel} title={"Редактирование встречи"} />
+
+      <Bottom>
+        <Button title="Отмена" onClick={onCancel} />
+        <Button title="Удалить встречу" />
+        <Button title="Сохранить" onClick={onCancel} />
+      </Bottom>
     </Fragment>
   );
 };
