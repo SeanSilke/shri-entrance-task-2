@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Diagram } from "./diagram";
-import { Editing } from "./meeting-editing";
+import { Edit, New } from "./meeting-editing";
 import { Modal } from "./components/modal";
 import "./app.css";
 
@@ -15,8 +15,8 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Diagram} />
-          <Route path="/new" component={Editing} />
-          <Route path="/editing" component={Editing} />
+          <Route path="/new" component={Edit} />
+          <Route path="/edit" component={New} />
         </Switch>
         {isModal ? <Route exact path="/" component={Modal} /> : null}
       </div>
